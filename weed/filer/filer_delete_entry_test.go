@@ -45,7 +45,7 @@ func TestKeepRemoteObjectMarkerOnlyLivesOnDeleteEvents(t *testing.T) {
 	require.NoError(t, f.CreateEntry(ctx, file, nil, false, false, nil, true, 255))
 	updated := file.ShallowClone()
 	updated.Extended = planted()
-	require.NoError(t, f.UpdateEntry(ctx, file, updated, false))
+	require.NoError(t, f.UpdateEntry(ctx, file, updated))
 
 	stored := store.entries[string(file.FullPath)]
 	require.NotContains(t, stored.Extended, ExtKeepRemoteObjectKey, "a client must not be able to store the marker")
